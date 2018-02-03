@@ -9,13 +9,27 @@ go_library(
     visibility = ["PUBLIC"],
     deps = [
         "//src/cli",
-        "//src/core",
+        '//src/core',
         "//src/fs",
-        "//src/parse/asp",
+        '//src/parse/asp',
+        '//src/parse/asp/builtins',
         "//src/parse/rules",
-        "//src/utils",
+        '//src/parse/cffi:please_parser_static',
+        '//src/parse/skylark',
+        '//src/utils',
         "//src/worker",
-        "//third_party/go:logging",
+        '//third_party/go:gcfg',
+        '//third_party/go:logging',
+    ],
+    visibility = ['PUBLIC'],
+)
+
+filegroup(
+    name = 'builtin_rules',
+    srcs = glob(['rules/*.build_defs']),
+    visibility = [
+        '//src/parse/asp/builtins:all',
+        '//src/parse/skylark:all',
     ],
 )
 

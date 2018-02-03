@@ -625,3 +625,9 @@ go_get(
     patch = "ar_octal.diff",
     revision = "8bd4349a67f2533b078dbc524689d15dba0f4659",
 )
+
+go_get(
+    name = 'skylark',
+    get = 'github.com/google/skylark',
+    revision = '69e9615dbc27ae3b4fa64d1fcfa01434f8af4cee',
+)
