@@ -560,9 +560,3 @@ _PYTHON_BINARY_CMDS = {
     'opt': '$TOOL z -i . -o $OUTS -s .pex.zip -s .whl --preamble_from="$SRC" --include_other --add_init_py --strict',
     'stripped': '$TOOL z -i . -o $OUTS -s .pex.zip -s .whl --preamble_from="$SRC" --include_other --add_init_py --strict -e .py -x "*.py"',
 }
-
-
-if CONFIG.BAZEL_COMPATIBILITY:
-    py_library = python_library
-    py_binary = python_binary
-    py_test = python_test

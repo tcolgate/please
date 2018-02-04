@@ -114,7 +114,7 @@ def sh_test(name:str, src:str=None, labels:list&features&tags=None, data:list=No
 
     return build_rule(
         name=name,
-        srcs=[src or test],
+        srcs=[src],
         data=data,
         deps=deps,
         outs=[name + '.sh'],
