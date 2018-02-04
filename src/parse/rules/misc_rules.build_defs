@@ -470,37 +470,3 @@ _TIMEOUT_NAMES = {
     'moderate': 300,
     'short': 60,
 }
-
-
-if CONFIG.BAZEL_COMPATIBILITY:
-    def bind(name, actual=None):
-        """Mimics the Bazel bind() function which binds some target or sub-target into our repo.
-
-        TODO(peterebden): Remove, it seems to be deprecated in Bazel so may not be much value having it here.
-        """
-        if not actual:
-            return
-        if actual.startswith('@') and actual.endswith('//jar'):
-            actual = ':' + actual[:-len('//jar')].lstrip('@')
-        filegroup(
-            name = name,
-            srcs = [actual],
-            visibility = ['PUBLIC'],
-        )
-
-    def exports_files(srcs, name='exported_files', visibility=['PUBLIC'], licenses=None):
-        """Makes a bunch of files available as a filegroup.
-
-        Note that the semantics are not the same as Bazel; it lifts the restrictions on those
-        files being available to other packages, whereas we're just creating a rule. It's not
-        impossible to extend Please to support that but right now we're not bothering.
-        """
-        filegroup(
-            name = name,
-            srcs = srcs,
-            visibility = visibility,
-        )
-
-    def licenses(licences):
-        """Sets the default licences for the package."""
-        package(default_licences = licences)
